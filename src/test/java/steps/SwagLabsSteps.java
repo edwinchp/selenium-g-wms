@@ -4,26 +4,22 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
 import org.junit.Assert;
 import org.testng.asserts.SoftAssert;
 
 import pages.LoginPage;
 import pages.ProductsPage;
+import utils.ConfigReader;
 
 public class SwagLabsSteps {
 
     private LoginPage loginPage = new LoginPage();
     private ProductsPage productsPage = new ProductsPage();
 
-    @Given("I have the browser opened in {string}")
-    public void iHaveTheBrowserOpenedIn(String url) {
-        loginPage.goToLoginPage(url);
-    }
-
-    @When("I enter the {string} and password {string}")
-    public void iEnterTheAndPassword(String username, String password) {
-        loginPage.typeUsername(username);
-        loginPage.typePassword(password);
+    @Given("the portal is opened in the browser")
+    public void iHaveTheBrowserOpenedIn() {
+        loginPage.goToLoginPage(ConfigReader.getBaseUrl());
     }
 
     @And("I click Login button")
@@ -64,5 +60,11 @@ public class SwagLabsSteps {
         softAssert.assertTrue(productsPage.isItemMenuDisplayed("Logout"));
         softAssert.assertTrue(productsPage.isItemMenuDisplayed("Reset App State"));
         softAssert.assertAll();
+    }
+
+    @When("I enter valid credentials")
+    public void IEnterValidCredentials() {
+        loginPage.typeUsername(ConfigReader.getUsername());
+        loginPage.typePassword(ConfigReader.getPassword());
     }
 }

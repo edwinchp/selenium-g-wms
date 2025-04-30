@@ -1,15 +1,9 @@
 Feature: 001 Login
-  Login to saucedemo.com
+  Validate login functionality
 
-  @Test @SwagLabs @SwagLabs_001 @Failed
-  Scenario Outline: Login is working
-    Given I have the browser opened in "https://www.saucedemo.com/"
-
-    When I enter the "<username>" and password "<password>"
+  @Test @Login @Regression
+  Scenario: User logs in with valid credentials
+    Given the portal is opened in the browser
+    When I enter valid credentials
     And I click Login button
-
     Then I can see the Products section
-
-    Examples:
-      | username                | password     |
-      | standard_user           | secret_sauce |
