@@ -2,6 +2,7 @@ package steps;
 
 import org.testng.Assert;
 
+import drivers.DriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,11 +10,13 @@ import io.cucumber.java.en.When;
 import pages.DashboardPage;
 import pages.LoginPage;
 import utils.ConfigReader;
+import org.openqa.selenium.WebDriver;
 
 public class LoginSteps {
 
-    private final LoginPage loginPage = new LoginPage();
-    private final DashboardPage dashboardPage = new DashboardPage();
+    private final WebDriver driver = DriverManager.getDriver();
+    private final LoginPage loginPage = new LoginPage(driver);
+    private final DashboardPage dashboardPage = new DashboardPage(driver);
 
     @Given("the portal is opened in the browser")
     public void iHaveTheBrowserOpenedIn() {
