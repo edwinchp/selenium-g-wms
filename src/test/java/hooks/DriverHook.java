@@ -1,4 +1,4 @@
-package steps;
+package hooks;
 
 import drivers.DriverManager;
 import io.cucumber.java.After;
