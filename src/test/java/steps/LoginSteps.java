@@ -44,4 +44,9 @@ public class LoginSteps {
         loginPage.typeEmail(ConfigReader.getUsername());
         loginPage.typePassword(" wrongpassword");
     }
+
+    @Then("I can see the error login message")
+    public void iCanSeeTheErrorLoginMessage() {
+        Assert.assertTrue(loginPage.isErrorMessageDisplayed());
+    }
 }

@@ -8,6 +8,8 @@ public class LoginPage extends BasePage {
     private static final By emailField = By.name("email");
     private static final By passwordField = By.name("password");
     private static final By loginButton = By.xpath("//button[@type='submit']");
+    private static final By errorLoginMessage = By.xpath("//div[@role='alert' and contains(text(), 'Email or password is invalid!')]");
+
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -27,5 +29,9 @@ public class LoginPage extends BasePage {
 
     public void clickLoginButton() {
         clickElement(loginButton);
+    }
+
+    public boolean isErrorMessageDisplayed() {
+        return isDisplayed(errorLoginMessage);
     }
 }
