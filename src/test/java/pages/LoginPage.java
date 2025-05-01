@@ -1,37 +1,27 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 public class LoginPage extends BasePage {
 
-    public LoginPage() {
-        super(driver);
-    }
+    private static final By emailField = By.name("email");
+    private static final By passwordField = By.name("password");
+    private static final By loginButton = By.xpath("//button[@type='submit']");
+
 
     public void goToLoginPage(String url) {
         navigateTo(url);
     }
 
-    public void typeUsername(String username) {
-        type(By.id("user-name"), username);
+    public void typeEmail(String email) {
+        type(emailField, email);
     }
 
-    public void typePassword(String username) {
-        type(By.id("password"), username);
+    public void typePassword(String password) {
+        type(passwordField, password);
     }
 
     public void clickLoginButton() {
-        clickElement(By.id("login-button"));
-    }
-
-    public void clickCartIcon() {
-        clickElement(By.id("shopping_cart_container"));
-    }
-
-    public List<WebElement> getProductsInCart() {
-        return getElements(By.xpath("//div[@class='cart_item']"));
+        clickElement(loginButton);
     }
 }

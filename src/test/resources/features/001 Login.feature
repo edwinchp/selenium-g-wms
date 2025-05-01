@@ -6,4 +6,6 @@ Feature: 001 Login
     Given the portal is opened in the browser
     When I enter valid credentials
     And I click Login button
-    Then I can see the Products section
+    Then I can see the success login message
+
+

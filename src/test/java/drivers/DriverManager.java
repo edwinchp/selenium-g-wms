@@ -1,21 +1,22 @@
-package factory;
+package drivers;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class DriverFactory {
+public class DriverManager {
+
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     public static WebDriver createDriver() {
         String browser = System.getProperty("browser", "chrome");
         boolean headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
         boolean maximize = Boolean.parseBoolean(System.getProperty("maximize", "true"));
 
-        WebDriver driver;
+        //WebDriver driver;
 
         switch (browser.toLowerCase()) {
             case "firefox":
@@ -24,7 +25,7 @@ public class DriverFactory {
                 if (headless) {
                     firefoxOptions.addArguments("--headless");
                 }
-                driver = new FirefoxDriver(firefoxOptions);
+                driver.set(new FirefoxDriver(firefoxOptions));
                 break;
             case "chrome":
             default:
@@ -35,14 +36,25 @@ public class DriverFactory {
                 }
                 //chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
                 //chromeOptions.setExperimentalOption("useAutomationExtension", false);
-                driver = new ChromeDriver(chromeOptions);
+                driver.set(new ChromeDriver(chromeOptions));
                 break;
         }
 
         if (maximize) {
-            driver.manage().window().maximize();
+            driver.get().manage().window().maximize();
         }
 
-        return driver;
+        return driver.get();
+    }
+
+    public static void quitDriver() {
+       if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove();
+        }
+    }
+
+    public static WebDriver getDriver() {
+        return driver.get();
     }
 }

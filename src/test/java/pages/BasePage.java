@@ -11,19 +11,19 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import factory.DriverFactory;
+import drivers.DriverManager;
 
 public class BasePage {
 
     protected static WebDriver driver;
-    private WebDriverWait wait;
+    private final WebDriverWait wait;
 
-    static{
-        driver = DriverFactory.createDriver();
+    static {
+        driver = DriverManager.createDriver();
     }
 
-    public BasePage(WebDriver driver){
-        BasePage.driver = driver;
+    public BasePage(){    
+        System.out.println("Driver initialized in BasePage: " + driver);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
@@ -59,9 +59,6 @@ public class BasePage {
         return find(ele).isDisplayed();
     }
 
-    public static void closeBrowser(){
-        driver.close();
-    }
 
     protected void type(By ele, String text){
         find(ele).sendKeys(text);
@@ -71,15 +68,11 @@ public class BasePage {
         return find(ele).getText();
     }
 
-    public static void quitDriver(){
-        BasePage.driver.quit();
-    }
-
     public void clickIfVisible(By ele){
         Duration currentDuration = driver.manage().timeouts().getImplicitWaitTimeout();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         try {
-            driver.findElement(ele).click();;
+            driver.findElement(ele).click();
         } catch (Exception e) {
             System.out.println("Unable to click on element: " + ele);
         } finally {
