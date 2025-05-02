@@ -16,8 +16,6 @@ public class DriverManager {
         boolean headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
         boolean maximize = Boolean.parseBoolean(System.getProperty("maximize", "true"));
 
-        //WebDriver driver;
-
         switch (browser.toLowerCase()) {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
@@ -34,8 +32,6 @@ public class DriverManager {
                 if (headless) {
                     chromeOptions.addArguments("--headless");
                 }
-                //chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-                //chromeOptions.setExperimentalOption("useAutomationExtension", false);
                 driver.set(new ChromeDriver(chromeOptions));
                 break;
         }

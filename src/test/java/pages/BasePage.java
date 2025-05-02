@@ -11,21 +11,15 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-//import drivers.DriverManager;
-
 public class BasePage {
 
     protected WebDriver driver;
     private final WebDriverWait wait;
 
-    static {
-        //driver = DriverManager.createDriver();
-    }
 
     public BasePage(WebDriver driver) {   
-        //driver = DriverManager.createDriver();
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
     }
 
     public void navigateTo(String url){
@@ -65,6 +59,10 @@ public class BasePage {
         find(ele).sendKeys(text);
     }
 
+    protected void type(By ele, Keys key){
+        find(ele).sendKeys(key);
+    }
+
     protected String getText(By ele){
         return find(ele).getText();
     }
@@ -88,5 +86,17 @@ public class BasePage {
 
     protected String getUrl(){
         return driver.getCurrentUrl();
+    }
+
+    protected void selectDropdownByText(By ele, String text){
+        WebElement dropdown = find(ele);
+        dropdown.click();
+        List<WebElement> options = dropdown.findElements(By.tagName("option"));
+        for (WebElement option : options) {
+            if (option.getText().equals(text)) {
+                option.click();
+                break;
+            }
+        }
     }
 }
