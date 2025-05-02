@@ -1,6 +1,5 @@
 package steps;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -81,9 +80,9 @@ public class OrderMonitorSteps {
         orderMonitorPage.clickAddNewOrderLineButton();
     }
 
-    @And("I select a SKU order")
-    public void selectASkuOrder() {
-        orderMonitorPage.selectSkuOrder();
+    @And("I enter the SKU order: {string}")
+    public void selectASkuOrder(String sku) {
+        orderMonitorPage.selectSkuOrder(sku);
     }
 
     @And("I enter {int} in the Package Quantity field")

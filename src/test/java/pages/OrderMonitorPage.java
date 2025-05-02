@@ -3,7 +3,6 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.Keys;
 
 public class OrderMonitorPage extends BasePage {
 
@@ -38,12 +37,11 @@ public class OrderMonitorPage extends BasePage {
 
     private final By addNewOrderLineButton = By.xpath("//button[normalize-space()='Add']");
     private final By skuInput = By.id("mui-35");
-    //private final By skuOptions = By.id("mui-40");
+    private final By skuOption = By.xpath("//div[@role='presentation' and @data-popper-placement and contains(@style, 'position: absolute')]");
     private final By packageQtyInput = By.id("mui-36");
     private final By salesPriceInput = By.id("mui-38");
     private final By saveButton = By.xpath("//button[normalize-space()='Save']");
     private final By successMessage = By.id("notistack-snackbar");
-    
 
     public OrderMonitorPage(WebDriver driver) {
         super(driver);
@@ -97,13 +95,11 @@ public class OrderMonitorPage extends BasePage {
         clickElement(addNewOrderLineButton);
     }
 
-    public void selectSkuOrder() {
+    public void selectSkuOrder(String sku) {
+        type(skuInput, sku);
         clickElement(skuInput);
-        type(skuInput, Keys.ENTER);
-        type(skuInput, Keys.ARROW_DOWN);
-        type(skuInput, Keys.ENTER);
-        type(skuInput, "CS099-CAH");
-        type(skuInput, Keys.ENTER);
+        hover(skuInput);
+        isDisplayed(skuOption);
         type(skuInput, Keys.ARROW_DOWN);
         type(skuInput, Keys.ENTER);
     }

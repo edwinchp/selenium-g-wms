@@ -50,6 +50,10 @@ public class BasePage {
         return find(locator).isDisplayed();
     }
 
+    protected void waitForElementToBeClickable(By ele){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ele));
+    }
+
     protected boolean isDisplayed(By ele){
         return find(ele).isDisplayed();
     }
@@ -82,6 +86,11 @@ public class BasePage {
     protected void pressKeys(Keys key){
         Actions action = new Actions(driver);
         action.sendKeys(key).build().perform();
+    }
+
+    protected void hover(By ele){
+        Actions action = new Actions(driver);
+        action.moveToElement(find(ele)).build().perform();
     }
 
     protected String getUrl(){
