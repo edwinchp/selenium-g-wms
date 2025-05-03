@@ -7,10 +7,11 @@ Feature: 002 OrderMonitor
     When I enter valid credentials
     And I click Login button
     And I click on Order Monitor button
+    And I click on Orders tab
     And I click on Create button
     And I enter Shipping Order details:
-      | Number | Task ID | Purchase Order | Order Value | Order Notes | Transportation Method |
-      |  10001 | TSK-21  | PO-456         |      199.99 | Urgent      | Fulfillment           |
+      | Task ID | Purchase Order | Order Value | Order Notes | Transportation Method |
+      | TSK-21  | PO-456         |      199.99 | Urgent      | Fulfillment           |
     And I enter Shipping Address details:
       | Name       | Address 1   | Address 2 | City   | State | Zip Code | Phone       | Email            | Country |
       | John Smith | 123 Main St | Apt 4B    | Gotham | NY    |    10001 | 555-1234567 | john@example.com | US     |

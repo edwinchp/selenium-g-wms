@@ -7,39 +7,40 @@ import org.openqa.selenium.WebDriver;
 public class OrderMonitorPage extends BasePage {
 
     private final By orderMonitorButton = By.xpath("//nav//ul//a[contains(.,'Orders Monitor')]");
+    private final By orderMonitorTab = By.xpath("//button[normalize-space()='Orders']");
     private final By createButton = By.xpath("//button[normalize-space()='Create']");
-    private final By numberInput = By.id("mui-8");
-    private final By taskIdInput = By.id("mui-9");
-    private final By poInput = By.id("mui-10");
-    private final By valueInput = By.id("mui-11");
-    private final By notesInput = By.id("mui-12");
-    private final By transportDropdown = By.id("mui-14");
+    private final By numberInput = By.name("number");
+    private final By taskIdInput = By.name("taskid");
+    private final By poInput = By.name("customerPurchaseOrder");
+    private final By valueInput = By.name("value");
+    private final By notesInput = By.name("notes");
+    private final By transportDropdown = By.xpath("//label[contains(.,'Transportation Method')]/following-sibling::div");
 
-    private final By shippingAddressNameInput = By.id("mui-15");
-    private final By shippingAddressAddress1Input = By.id("mui-16");
-    private final By shippingAddressAddress2Input = By.id("mui-17");
-    private final By shippingAddressCityInput = By.id("mui-18");
-    private final By shippingAddressStateInput = By.id("mui-19");
-    private final By shippingAddressZipCodeInput = By.id("mui-20");
-    private final By shippingAddressPhoneInput = By.id("mui-21");
-    private final By shippingAddressEmailInput = By.id("mui-22");
-    private final By shippingAddressCountryInput = By.id("mui-23");
+    private final By shippingAddressNameInput = By.name("shipAddress.name");
+    private final By shippingAddressAddress1Input = By.name("shipAddress.address1");
+    private final By shippingAddressAddress2Input = By.name("shipAddress.address2");
+    private final By shippingAddressCityInput = By.name("shipAddress.city");
+    private final By shippingAddressStateInput = By.name("shipAddress.state");
+    private final By shippingAddressZipCodeInput = By.name("shipAddress.postalCode");
+    private final By shippingAddressPhoneInput = By.name("shipAddress.phone");
+    private final By shippingAddressEmailInput = By.name("shipAddress.email");
+    private final By shippingAddressCountryInput = By.name("shipAddress.country");
 
-    private final By billingAddressNameInput = By.id("mui-24");
-    private final By billingAddressAddress1Input = By.id("mui-25");
-    private final By billingAddressAddress2Input = By.id("mui-26");
-    private final By billingAddressCityInput = By.id("mui-27");
-    private final By billingAddressStateInput = By.id("mui-28");
-    private final By billingAddressZipCodeInput = By.id("mui-29");
-    private final By billingAddressPhoneInput = By.id("mui-30");
-    private final By billingAddressEmailInput = By.id("mui-31");
-    private final By billingAddressCountryInput = By.id("mui-32");
+    private final By billingAddressNameInput = By.name("billAddress.name");
+    private final By billingAddressAddress1Input = By.name("billAddress.address1");
+    private final By billingAddressAddress2Input = By.name("billAddress.address2");
+    private final By billingAddressCityInput = By.name("billAddress.city");
+    private final By billingAddressStateInput = By.name("billAddress.state");
+    private final By billingAddressZipCodeInput = By.name("billAddress.postalCode");
+    private final By billingAddressPhoneInput = By.name("billAddress.phone");
+    private final By billingAddressEmailInput = By.name("billAddress.email");
+    private final By billingAddressCountryInput = By.name("billAddress.country");
 
     private final By addNewOrderLineButton = By.xpath("//button[normalize-space()='Add']");
-    private final By skuInput = By.id("mui-35");
+    private final By skuInput = By.name("lines[0].number");
     private final By skuOption = By.xpath("//div[@role='presentation' and @data-popper-placement and contains(@style, 'position: absolute')]");
-    private final By packageQtyInput = By.id("mui-36");
-    private final By salesPriceInput = By.id("mui-38");
+    private final By packageQtyInput = By.name("lines[0].requestedQuantity");
+    private final By salesPriceInput = By.name("lines[0].salePrice");
     private final By saveButton = By.xpath("//button[normalize-space()='Save']");
     private final By successMessage = By.id("notistack-snackbar");
 
@@ -55,6 +56,10 @@ public class OrderMonitorPage extends BasePage {
         clickElement(orderMonitorButton);
     }
 
+    public void clickOrderMonitorTab() {
+        clickElement(orderMonitorTab);
+    }
+
     public void enterShippingOrderDetails(String number, String taskId, String purchaseOrder, String orderValue, String notes, String transportMethod) {
         type(numberInput, number);
         type(taskIdInput, taskId);
@@ -62,7 +67,7 @@ public class OrderMonitorPage extends BasePage {
         type(valueInput, orderValue);
         type(notesInput, notes);
         clickElement(transportDropdown);
-        clickElement(By.xpath("//ul[@id='mui-13']//li[normalize-space()='" + transportMethod + "']"));
+        clickElement(By.xpath("//li[normalize-space()='" + transportMethod + "']"));
     }
 
     public void enterShippingAddressDetails(String name, String address1, String address2, String city,

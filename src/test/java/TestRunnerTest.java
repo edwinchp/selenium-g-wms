@@ -13,7 +13,7 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
             "html:target/cucumber-reports.html",
             "json:target/cucumber.json"
         },
-        tags = "@Test")
+        tags = "@OrderMonitor")
 
 public class TestRunnerTest extends AbstractTestNGCucumberTests {
 

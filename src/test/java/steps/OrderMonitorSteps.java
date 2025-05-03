@@ -5,12 +5,13 @@ import java.util.Random;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+
+import drivers.DriverManager;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.OrderMonitorPage;
-import drivers.DriverManager;
 
 public class OrderMonitorSteps {
 
@@ -20,6 +21,11 @@ public class OrderMonitorSteps {
     @And("I click on Order Monitor button")
     public void iClickOnOrderMonitorButton() {
         orderMonitorPage.clickOrderMonitorButton();
+    }
+
+    @When("I click on Orders tab")
+    public void iClickOnOrdersTab() {
+        orderMonitorPage.clickOrderMonitorTab();
     }
 
     @When("I click on Create button")
