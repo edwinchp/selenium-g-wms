@@ -43,6 +43,8 @@ public class OrderMonitorPage extends BasePage {
     private final By salesPriceInput = By.name("lines[0].salePrice");
     private final By saveButton = By.xpath("//button[normalize-space()='Save']");
     private final By successMessage = By.id("notistack-snackbar");
+    private final By hiddenButtonFile = By.id("icon-button-file");
+    private final By errorImportDialogBox = By.xpath("//div[@id='alert-dialog-slide-title']//h2");
 
     public OrderMonitorPage(WebDriver driver) {
         super(driver);
@@ -123,5 +125,19 @@ public class OrderMonitorPage extends BasePage {
 
     public boolean isSuccessMessageDisplayed() {
         return isDisplayed(successMessage);
+    }
+
+    public void uploadCsvFile(String string) {
+        addAttributeToElement(hiddenButtonFile, "style", "display: block;");
+        type(hiddenButtonFile, string);
+        
+    }
+
+    public boolean isErrorMessageDisplayed() {
+        return isDisplayed(errorImportDialogBox);
+    }
+
+    public String getErrorMessageText() {
+        return getText(errorImportDialogBox);
     }
 }

@@ -1,5 +1,6 @@
 package steps;
 
+import java.io.File;
 import java.util.Map;
 import java.util.Random;
 
@@ -109,5 +110,17 @@ public class OrderMonitorSteps {
     @Then("I can see the success message")
     public void verifySuccessMessage() {
         Assert.assertTrue(orderMonitorPage.isSuccessMessageDisplayed());
+    }
+
+    @When("I upload a CSV file with invalid data")
+    public void iUploadACsvFileWithInvalidData() {
+        File file = new File("src/test/resources/testdata/invalid_dummy_orders.csv");
+        orderMonitorPage.uploadCsvFile(file.getAbsolutePath());
+    }
+
+    @Then("I can see the error message {string}")
+    public void iCanSeeTheErrorMessage(String errorMessage) {
+        Assert.assertTrue(orderMonitorPage.isErrorMessageDisplayed());
+        Assert.assertEquals(orderMonitorPage.getErrorMessageText(), errorMessage);
     }
 }

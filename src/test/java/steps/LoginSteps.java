@@ -1,5 +1,6 @@
 package steps;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 import drivers.DriverManager;
@@ -10,7 +11,6 @@ import io.cucumber.java.en.When;
 import pages.DashboardPage;
 import pages.LoginPage;
 import utils.ConfigReader;
-import org.openqa.selenium.WebDriver;
 
 public class LoginSteps {
 

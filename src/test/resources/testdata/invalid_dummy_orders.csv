@@ -1,0 +1,6 @@
+Order Number,shippingAddress.street1,shippingAddress.city,shippingAddress.country,billingAddress.street1,billingAddress.city,billingAddress.country,lineItems.0.sku,lineItems.0.quantity
+ORD-001,123 Elm St,Metropolis,US,456 Oak Ave,Gotham,US,SKU-001,2
+ORD-002,789 Pine Rd,Star City,US,101 Maple Ln,Central City,US,SKU-002,1
+ORD-003,22 Willow St,Coast City,US,33 Cedar Dr,Ivy Town,US,SKU-003,5
+ORD-004,18 Birch Pl,Smallville,US,67 Aspen Blvd,National City,US,SKU-004,3
+ORD-005,300 Palm Ct,Blüdhaven,US,900 Fir Ln,Midway City,US,SKU-005,4
