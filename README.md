@@ -30,5 +30,5 @@ export CUCUMBER_PUBLISH_TOKEN=your_token_here
 
 ### 4. Run the Tests
 ```bash
-mvn test
+mvn clean test -Dcucumber.filter.tags="@Test" -Dheadless=true -Dcucumber.plugin="pretty,html:target/cucumber-reports.html"
 ```
